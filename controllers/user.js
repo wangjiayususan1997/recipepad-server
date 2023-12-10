@@ -32,6 +32,7 @@ export const signin = async (req, res) => {
   }
 };
 
+//add role, introduction, tel to signup
 export const signup = async (req, res) => {
   const { email, password, firstName, lastName } = req.body;
   try {
@@ -66,7 +67,6 @@ export const googleSignIn = async (req, res) => {
   try {
     const oldUser = await UserModal.findOne({ email });
     if (oldUser) {
-      const result = { _id: oldUser._id.toString(), email, name };
       const token = jwt.sign(
         { email: oldUser.email, id: oldUser._id },
         secret,
@@ -74,7 +74,7 @@ export const googleSignIn = async (req, res) => {
           expiresIn: "1h",
         }
       );
-      return res.status(200).json({ result, token });
+      return res.status(200).json({ result: oldUser, token });
     }
 
     const result = await UserModal.create({

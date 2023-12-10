@@ -6,6 +6,9 @@ const userSchema = mongoose.Schema({
   password: { type: String, required: false },
   googleId: { type: String, required: false },
   id: { type: String },
+  // role:
+  // introduction:
+  // tel:
 });
 
 export default mongoose.model("User", userSchema);

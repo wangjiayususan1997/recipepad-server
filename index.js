@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 import cors from "cors";
 import morgan from "morgan";
 import userRouter from "./routes/user.js";
+import recipeRouter from "./routes/recipe.js";
 
 const app = express();
 
@@ -12,6 +13,7 @@ app.use(express.urlencoded({ limit: "30mb", extended: true })); // used to parse
 app.use(cors());
 
 app.use("/users", userRouter); // http://localhost:5000/users/signup
+app.use("/recipe", recipeRouter); // http://localhost:5000/recipe
 
 const MONGODB_URL =
   "mongodb+srv://wangjiayususan:AIjiayu0129@cluster0.onugccx.mongodb.net/meal?retryWrites=true&w=majority";
